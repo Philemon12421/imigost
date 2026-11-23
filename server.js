@@ -24,7 +24,7 @@ const MIN_SLUG = 3;
 /* Names that would clash with real files or routes */
 const RESERVED = new Set([
     "api", "index", "links", "profile", "image", "core", "builder", "server",
-    "offline", "manifest", "favicon", "icons", "consent", "pwa", "site", "sw", "robots",
+    "offline", "manifest", "tools", "crop", "convert", "speed", "favicon", "icons", "consent", "pwa", "site", "sw", "robots",
     "admin", "static", "assets", "login", "signup", "help", "about", "terms", "privacy",
 ]);
 
@@ -40,8 +40,10 @@ const TYPES = {
 
 const FILES = [
     "index.html", "links.html", "profile.html", "offline.html",
-    "image.css", "links.css", "site.css",
+    "tools.html", "crop.html", "convert.html", "speed.html",
+    "image.css", "links.css", "site.css", "tools.css",
     "core.js", "image.js", "builder.js", "consent.js", "pwa.js", "sw.js",
+    "tools.js", "crop.js", "convert.js", "speed.js",
     "manifest.webmanifest", "favicon.svg",
     "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png",
     "icons/apple-touch-icon.png", "icons/favicon-32.png",
