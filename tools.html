@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Photo tools · ImageSearch</title>
+    <meta name="description" content="Free photo tools that run in your browser: crop for social media, and compress, resize and convert.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#f2f3f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101214" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ImageSearch">
+
+    <!-- Loads Google Fonts only after the visitor accepts -->
+    <script src="consent.js"></script>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="links.css">
+    <link rel="stylesheet" href="tools.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="ImageSearch home">
+            <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4"/>
+                <circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>
+            </svg>
+            ImageSearch
+        </a>
+        <nav class="topbar-nav">
+            <a href="index.html">Photos</a>
+            <a href="links.html">Link page</a>
+            <a href="tools.html" aria-current="page">Tools</a>
+        </nav>
+    </header>
+
+    <main class="tool">
+        <section class="tool-hero">
+            <h1>Handy tools, right in your browser.</h1>
+            <p>Get a photo ready for any platform, or check your connection. The photo tools run on your device, so there is nothing to upload.</p>
+        </section>
+
+        <div class="tool-grid">
+            <a class="tool-card" href="crop.html">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14"/></svg></span>
+                <h2>Crop for social media</h2>
+                <p>Pick Instagram, Stories, YouTube, X, LinkedIn and more. Drag and zoom to frame your photo, then download it at the right size.</p>
+                <span class="open">Open the crop tool</span>
+            </a>
+            <a class="tool-card" href="convert.html">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14l5-5 4 4 2-2 5 5M4 4h16v16H4z"/><path d="M16 8.5h.01"/></svg></span>
+                <h2>Compress, resize and convert</h2>
+                <p>Make photos smaller, change their dimensions, or switch between JPG, PNG and WebP. Works on many photos at once, with a single ZIP download.</p>
+                <span class="open">Open the converter</span>
+            </a>
+            <a class="tool-card" href="speed.html">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 18a9 9 0 1 1 15 0"/><path d="M12 14l4-5"/><circle cx="12" cy="14" r="1.2" fill="currentColor"/></svg></span>
+                <h2>Internet speed test</h2>
+                <p>Measure your download speed, upload speed, ping and jitter, and see what your connection can handle.</p>
+                <span class="open">Run a speed test</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Made with ImageSearch. <span aria-hidden="true">·</span> <button type="button" class="link-button" data-consent-open>Cookie settings</button></p>
+    </footer>
+
+
+    <script src="pwa.js"></script>
+</body>
+</html>
