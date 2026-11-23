@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compress, resize and convert photos · ImageSearch</title>
+    <meta name="description" content="Make photos smaller, change their size, or convert between JPG, PNG and WebP. Many at once. Runs in your browser.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#f2f3f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101214" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ImageSearch">
+
+    <!-- Loads Google Fonts only after the visitor accepts -->
+    <script src="consent.js"></script>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="links.css">
+    <link rel="stylesheet" href="tools.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="ImageSearch home">
+            <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4"/>
+                <circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>
+            </svg>
+            ImageSearch
+        </a>
+        <nav class="topbar-nav">
+            <a href="index.html">Photos</a>
+            <a href="links.html">Link page</a>
+            <a href="tools.html" aria-current="page">Tools</a>
+        </nav>
+    </header>
+
+    <main class="tool">
+        <section class="tool-hero">
+            <h1>Compress, resize and convert.</h1>
+            <p>Add one photo or many. Pick a format, a quality and a size, and download the results one by one or as a single ZIP.</p>
+            <p class="privacy-note"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg> Runs on your device. Your photos are never uploaded.</p>
+        </section>
+
+        <section aria-label="Add photos">
+            <div class="dropzone" id="dropzone">
+                <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 9"/></svg>
+                <h2>Drop photos here</h2>
+                <p>Or paste them from your clipboard. Up to 30 photos, 25 MB each.</p>
+                <button type="button" class="btn-primary" data-pick>Choose photos</button>
+                <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/gif,image/avif,image/bmp" multiple hidden>
+            </div>
+            <p class="tool-message" id="drop-message" role="status"></p>
+        </section>
+
+        <section class="convert-layout" id="workspace" style="margin-top: 32px;" hidden>
+            <div>
+                <div class="summary-bar">
+                    <p class="summary-text" id="summary" aria-live="polite"></p>
+                    <div class="summary-actions">
+                        <button type="button" class="btn-primary btn-small" id="download-all">Download all (ZIP)</button>
+                        <button type="button" class="btn-secondary btn-small" id="clear">Clear</button>
+                    </div>
+                </div>
+                <ul class="file-list" id="file-list"></ul>
+            </div>
+
+            <aside class="side-panel" aria-label="Settings">
+                <section class="panel">
+                    <h2>Settings</h2>
+                    <div class="stack">
+                        <div class="field">
+                            <span class="label" id="format-label">Format</span>
+                            <div class="segmented" id="format" role="group" aria-labelledby="format-label">
+                                <button type="button" data-format="jpeg" aria-pressed="true">JPG</button>
+                                <button type="button" data-format="webp" aria-pressed="false">WebP</button>
+                                <button type="button" data-format="png" aria-pressed="false">PNG</button>
+                            </div>
+                            <p class="help" id="format-help"></p>
+                        </div>
+
+                        <div class="field" id="quality-field">
+                            <label for="quality">Quality</label>
+                            <div class="range-row">
+                                <input type="range" id="quality" min="30" max="100" step="1" value="80">
+                                <span class="range-value" id="quality-value">80%</span>
+                            </div>
+                            <p class="help">Lower is smaller. Around 75 to 85 is usually hard to tell apart from the original.</p>
+                        </div>
+
+                        <div class="field">
+                            <label for="resize-mode">Size</label>
+                            <select id="resize-mode">
+                                <option value="original">Keep the original size</option>
+                                <option value="fit">Fit within a maximum size</option>
+                                <option value="percent">Scale by a percentage</option>
+                            </select>
+                        </div>
+
+                        <div class="row-2" id="fit-fields" hidden>
+                            <div class="field">
+                                <label for="max-w">Max width (px)</label>
+                                <input type="number" id="max-w" min="16" max="12000" value="1920" inputmode="numeric">
+                            </div>
+                            <div class="field">
+                                <label for="max-h">Max height (px)</label>
+                                <input type="number" id="max-h" min="16" max="12000" value="1920" inputmode="numeric">
+                            </div>
+                        </div>
+
+                        <div class="field" id="percent-field" hidden>
+                            <label for="percent">Scale</label>
+                            <div class="range-row">
+                                <input type="range" id="percent" min="10" max="100" step="1" value="50">
+                                <span class="range-value" id="percent-value">50%</span>
+                            </div>
+                        </div>
+
+                        <label class="check" id="no-enlarge-row" hidden>
+                            <input type="checkbox" id="no-enlarge" checked>
+                            Never enlarge small photos
+                        </label>
+
+                        <div class="field" id="bg-field">
+                            <label for="bg-color">Background for see-through areas</label>
+                            <input type="color" id="bg-color" value="#ffffff">
+                            <p class="help">JPG can’t be see-through, so transparent parts of a PNG get this colour.</p>
+                        </div>
+
+                        <p class="help">Photo details like location are removed when a photo is saved.</p>
+                    </div>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Made with ImageSearch. <span aria-hidden="true">·</span> <button type="button" class="link-button" data-consent-open>Cookie settings</button></p>
+    </footer>
+
+    <script src="tools.js"></script>
+    <script src="convert.js"></script>
+    <script src="pwa.js"></script>
+</body>
+</html>
