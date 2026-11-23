@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internet speed test · ImageSearch</title>
+    <meta name="description" content="Test your internet download speed, upload speed, ping and jitter from your browser.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#f2f3f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101214" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ImageSearch">
+
+    <!-- Loads Google Fonts only after the visitor accepts -->
+    <script src="consent.js"></script>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="links.css">
+    <link rel="stylesheet" href="tools.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="ImageSearch home">
+            <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4"/>
+                <circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>
+            </svg>
+            ImageSearch
+        </a>
+        <nav class="topbar-nav">
+            <a href="index.html">Photos</a>
+            <a href="links.html">Link page</a>
+            <a href="tools.html" aria-current="page">Tools</a>
+        </nav>
+    </header>
+
+    <main class="tool">
+        <section class="tool-hero">
+            <h1>How fast is your internet?</h1>
+            <p>Measure your download speed, upload speed, ping and jitter in about 20 seconds.</p>
+            <p class="privacy-note"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg> Nothing is stored except your recent results, on this device.</p>
+        </section>
+
+        <section class="speed-card" aria-label="Speed test">
+            <ol class="phases" id="phases" aria-label="Test progress">
+                <li data-phase="latency">Ping</li>
+                <li data-phase="download">Download</li>
+                <li data-phase="upload">Upload</li>
+            </ol>
+
+            <div class="gauge" id="gauge">
+                <svg viewBox="0 0 240 140" class="gauge-svg" aria-hidden="true">
+                    <path class="gauge-track" d="M 20 125 A 100 100 0 0 1 220 125" pathLength="100"/>
+                    <path class="gauge-fill" id="gauge-fill" d="M 20 125 A 100 100 0 0 1 220 125" pathLength="100"/>
+                </svg>
+                <div class="gauge-readout">
+                    <div class="gauge-number" id="gauge-number" aria-live="off">0</div>
+                    <div class="gauge-unit" id="gauge-unit">Mbps</div>
+                </div>
+                <span class="gauge-end gauge-end-left" aria-hidden="true">0</span>
+                <span class="gauge-end gauge-end-right" aria-hidden="true">1 Gbps</span>
+            </div>
+
+            <p class="phase-label" id="phase-label" role="status" aria-live="polite">Ready when you are.</p>
+
+            <div class="speed-actions">
+                <button type="button" class="btn-primary btn-big" id="start">Start test</button>
+                <button type="button" class="btn-secondary btn-big" id="cancel" hidden>Stop</button>
+            </div>
+
+            <label class="check save-data">
+                <input type="checkbox" id="quick">
+                Save data (shorter test)
+            </label>
+
+            <p class="tool-message" id="speed-message" role="alert"></p>
+        </section>
+
+        <section class="results" id="results" aria-label="Results" hidden>
+            <div class="result-grid">
+                <div class="result"><span class="result-label">Download</span><span class="result-value" id="r-download">–</span><span class="result-unit">Mbps</span></div>
+                <div class="result"><span class="result-label">Upload</span><span class="result-value" id="r-upload">–</span><span class="result-unit">Mbps</span></div>
+                <div class="result"><span class="result-label">Ping</span><span class="result-value" id="r-ping">–</span><span class="result-unit">ms</span></div>
+                <div class="result"><span class="result-label">Jitter</span><span class="result-value" id="r-jitter">–</span><span class="result-unit">ms</span></div>
+            </div>
+
+            <div class="verdict" id="verdict" hidden>
+                <h2>What you can do</h2>
+                <ul class="can-do" id="can-do"></ul>
+            </div>
+
+            <div class="result-actions">
+                <button type="button" class="btn-secondary btn-small" id="copy">Copy results</button>
+            </div>
+        </section>
+
+        <section class="history" id="history" hidden aria-labelledby="history-heading">
+            <div class="history-head">
+                <h2 id="history-heading">Recent tests</h2>
+                <button type="button" class="btn-link" id="clear-history">Clear</button>
+            </div>
+            <ul class="history-list" id="history-list"></ul>
+        </section>
+
+        <section class="notes" aria-label="About this test">
+            <p>The test runs against Cloudflare’s speed servers, which see your IP address like any website you visit. A full test can use roughly 5 to 400 MB depending on how fast your connection is. The shorter test uses at most about 40 MB.</p>
+            <p>Results vary with Wi-Fi signal, other devices and the time of day. For the most accurate number, test close to your router with other downloads paused.</p>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <p>Made with ImageSearch. <span aria-hidden="true">·</span> <button type="button" class="link-button" data-consent-open>Cookie settings</button></p>
+    </footer>
+
+    <script src="speed.js"></script>
+    <script src="pwa.js"></script>
+</body>
+</html>
