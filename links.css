@@ -901,6 +901,13 @@ input.invalid {
     .icon-btn { width: 40px; }
 }
 
+@media (max-width: 480px) {
+    .topbar-nav {
+        flex: 1 0 100%;
+        justify-content: flex-start;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
