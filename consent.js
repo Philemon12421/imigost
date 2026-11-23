@@ -2,8 +2,9 @@
  *
  * Load this in <head> so saved choices apply before the page paints.
  *
- *   Essential (always on)  saves the link-page draft and edit keys on this device,
- *                          remembers this choice, and lets the app work offline.
+ *   Essential (always on)  saves the link-page draft and edit keys and recent speed-test
+ *                          results on this device, remembers this choice, and lets the
+ *                          app work offline.
  *   Fonts (optional)       loads Google Fonts, which sends the visitor's IP address to Google.
  *
  * Add your own optional features (analytics, for example) by calling
@@ -88,7 +89,7 @@
             "<details>" +
             "<summary>What’s stored?</summary>" +
             "<ul>" +
-            "<li><strong>Essential</strong> (always on): your link-page draft and edit keys, this choice, and saved pages for offline use.</li>" +
+            "<li><strong>Essential</strong> (always on): your link-page draft and edit keys, recent speed-test results, this choice, and saved pages for offline use.</li>" +
             "<li><strong>Fonts</strong> (optional): Google Fonts, for the site’s typefaces.</li>" +
             "<li>Photos come from Unsplash, because that’s what the search shows.</li>" +
             "</ul>" +
