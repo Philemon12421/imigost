@@ -723,6 +723,13 @@ footer {
     .hero-description { display: none; }
 }
 
+@media (max-width: 480px) {
+    .topbar-nav {
+        flex: 1 0 100%;
+        justify-content: flex-start;
+    }
+}
+
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
