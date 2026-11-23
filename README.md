@@ -23,6 +23,13 @@ No framework and no build step. It's plain HTML, CSS and JavaScript, plus an opt
 - Live phone preview while you edit
 - Reorder links, validate them as you type, and get a shareable link
 
+### Tools
+A **Tools** tab with three tools. The photo tools run entirely in your browser, so photos are never uploaded.
+
+- **Crop for social media:** presets for Instagram (square and 4:5), Stories, Reels and TikTok, YouTube thumbnails, X, LinkedIn, Facebook, Pinterest and profile pictures, plus a custom size. Drag, pinch or scroll to frame, rotate, show a grid, then save as JPG, PNG or WebP at the exact size.
+- **Compress, resize and convert:** many photos at once. Choose JPG, WebP or PNG, a quality, and a size (keep, fit within a maximum, or scale by percent). See the before and after size of each photo, then download them one by one or as one ZIP. Saving removes details like location.
+- **Internet speed test:** ping, jitter, download and upload, with a live gauge, a "what you can do" summary and your recent results. A shorter test is available for people on limited data.
+
 ### App features
 - Installable PWA with an offline page and "Install app" button
 - Favicon and home-screen icons
@@ -38,6 +45,8 @@ No framework and no build step. It's plain HTML, CSS and JavaScript, plus an opt
 | `profile.html` | The public page people open from your link |
 | `core.js` | Shared logic: platforms, icons, looks, validation, link encoding, rendering |
 | `server.js` | Optional Node server for short links (no packages needed) |
+| `tools.html`, `crop.html`, `convert.html`, `speed.html` | The tools hub and the three tools |
+| `tools.css`, `tools.js`, `crop.js`, `convert.js`, `speed.js` | Tool styles and logic (`tools.js` holds shared helpers and a small ZIP writer) |
 | `site.css`, `consent.js` | Cookie banner, install button, offline notice |
 | `pwa.js`, `sw.js`, `manifest.webmanifest`, `offline.html` | Progressive web app files |
 | `favicon.svg`, `icons/` | Favicon and app icons |
@@ -106,9 +115,11 @@ The builder tries the server first and falls back to the long link automatically
 
 ## Privacy
 
-- **Essential storage** (always on): your link-page draft (`linkpage:draft`), edit keys (`linkpage:keys`), your cookie choice (`consent:v1`), and saved pages for offline use.
+- **Essential storage** (always on): your link-page draft (`linkpage:draft`), edit keys (`linkpage:keys`), recent speed-test results (`tools:speed-history`), your cookie choice (`consent:v1`), and saved pages for offline use.
 - **Google Fonts** only loads after a visitor presses **Accept all**. Choosing **Essential only** uses system fonts.
 - Photos load from Unsplash, because that is what the search shows.
+- The speed test contacts Cloudflare's speed servers (`speed.cloudflare.com`), but only after you press **Start test**. Cloudflare sees your IP address, like any site you visit.
+- The crop and convert tools never send your photos anywhere.
 - There are no analytics. If you add some, start them only when `Consent.get() === "all"`.
 
 Visitors can change their choice any time with **Cookie settings** in the footer. This is a good-faith setup, not legal advice, so check the rules that apply to your audience.
@@ -120,6 +131,12 @@ Visitors can change their choice any time with **Cookie settings** in the footer
 - Uploaded photos are accepted only as small JPEG, PNG or WebP data (SVG is refused because it can carry scripts). Photo links must be real `http(s)` addresses.
 - The server cleans every field again, limits request size, rate-limits saving, and serves only a fixed list of files.
 - Edit keys are stored as hashes on the server.
+
+## Notes on the tools
+
+- Browsers limit very large images. Photos over 100 megapixels, or results over about 16 megapixels, are refused with a clear message. Safari can't save WebP, so that option is switched off there.
+- The speed test uses Cloudflare's public speed-test endpoints, which are not a service you control. If they change or are blocked by an ad blocker or VPN, the test shows an error. A full test can use 5 to 400 MB depending on connection speed; the shorter test uses at most about 40 MB.
+- Social media sizes are common recommendations. Platforms change them, so edit the `PRESETS` list at the top of `crop.js` when they do.
 
 ## Customising
 
@@ -137,8 +154,8 @@ Visitors can change their choice any time with **Cookie settings** in the footer
 
 ## Author
 
-Built by Philemon Osei Kusi.Drenchack Tech Company Production
+Built by Philemon Osei Kusi.
 
 ## License
 
-`LICENSE` MIT 
+No license has been chosen yet. Add a `LICENSE` file (MIT is a common choice) to say how others may use this code.
