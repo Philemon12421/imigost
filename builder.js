@@ -563,3 +563,51 @@ syncFields();
 renderThemes();
 renderLinksEditor();
 update();
+
+/* ---------- Adding a link from the browser extension ---------- */
+/* The extension opens this page as links.html?add=https://...&title=... */
+
+function addLinkFromAddress() {
+    const params = new URLSearchParams(location.search);
+    const raw = params.get("add");
+    if (!raw) return;
+
+    const url = safeUrl(raw);
+    const title = (params.get("title") || "").replace(/\s+/g, " ").trim().slice(0, 60);
+    const notice = document.getElementById("add-notice");
+
+    // Take the address out of the bar so a refresh doesn't add it again
+    history.replaceState(null, "", location.pathname);
+
+    if (!url) {
+        notice.textContent = "That address couldn’t be added. Only web pages work.";
+        notice.hidden = false;
+        return;
+    }
+
+    const exists = state.links.some((l) => {
+        const r = resolveLink(l);
+        return r && r.href === url;
+    });
+
+    if (exists) {
+        notice.textContent = "That link is already on your page.";
+    } else if (state.links.length >= MAX_LINKS) {
+        notice.textContent = "You already have the maximum number of links.";
+    } else {
+        const entry = { p: "website", v: url, t: title };
+        const first = state.links[0];
+        if (state.links.length === 1 && first && first.p === "instagram" && !first.v.trim()) {
+            state.links[0] = entry; // replace the empty starter link
+        } else {
+            state.links.push(entry);
+        }
+        renderLinksEditor();
+        update();
+        notice.textContent = "Added " + (title ? "“" + title + "”" : url) + " to your link page.";
+    }
+    notice.hidden = false;
+    document.getElementById("links-heading").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+addLinkFromAddress();
