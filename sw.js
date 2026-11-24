@@ -1,7 +1,7 @@
 /* Service worker: makes the site installable and usable offline.
  * Bump VERSION whenever you change any site file, so visitors get the update. */
 
-const VERSION = "v4";
+const VERSION = "v5";
 const STATIC_CACHE = `static-${VERSION}`;
 const PAGE_CACHE = `pages-${VERSION}`;
 
@@ -14,6 +14,7 @@ const PRECACHE = [
     "crop.html",
     "convert.html",
     "speed.html",
+    "extension.html",
     "offline.html",
     "image.css",
     "links.css",
