@@ -30,6 +30,15 @@ A **Tools** tab with three tools. The photo tools run entirely in your browser, 
 - **Compress, resize and convert:** many photos at once. Choose JPG, WebP or PNG, a quality, and a size (keep, fit within a maximum, or scale by percent). See the before and after size of each photo, then download them one by one or as one ZIP. Saving removes details like location.
 - **Internet speed test:** ping, jitter, download and upload, with a live gauge, a "what you can do" summary and your recent results. A shorter test is available for people on limited data.
 
+### Browser extension
+A Chrome extension (also works in Edge, Brave and Opera) lives in the `extension/` folder. People get it from the **Get the Chrome extension** button in the site footer, which opens `extension.html` with the download and install steps.
+
+- Right-click any image on the web to **crop it for social media** or **compress and convert it**. It opens in your tool with the image already loaded.
+- Right-click a page or link to **add it to your link page**.
+- Select text and right-click to **search photos** for it. The toolbar popup also has a search box and quick links.
+
+See [`extension/README.md`](extension/README.md) for how it works, how to point it at your own site, and how to rebuild the ZIP.
+
 ### App features
 - Installable PWA with an offline page and "Install app" button
 - Favicon and home-screen icons
@@ -47,7 +56,8 @@ A **Tools** tab with three tools. The photo tools run entirely in your browser, 
 | `server.js` | Optional Node server for short links (no packages needed) |
 | `tools.html`, `crop.html`, `convert.html`, `speed.html` | The tools hub and the three tools |
 | `tools.css`, `tools.js`, `crop.js`, `convert.js`, `speed.js` | Tool styles and logic (`tools.js` holds shared helpers and a small ZIP writer) |
-| `site.css`, `consent.js` | Cookie banner, install button, offline notice |
+| `extension.html`, `extension/` | The extension install page, the extension source, and its ready-to-download ZIP |
+| `site.css`, `consent.js` | Cookie banner, install button, offline notice, footer button |
 | `pwa.js`, `sw.js`, `manifest.webmanifest`, `offline.html` | Progressive web app files |
 | `favicon.svg`, `icons/` | Favicon and app icons |
 
@@ -131,6 +141,14 @@ Visitors can change their choice any time with **Cookie settings** in the footer
 - Uploaded photos are accepted only as small JPEG, PNG or WebP data (SVG is refused because it can carry scripts). Photo links must be real `http(s)` addresses.
 - The server cleans every field again, limits request size, rate-limits saving, and serves only a fixed list of files.
 - Edit keys are stored as hashes on the server.
+
+## Notes on the extension
+
+- The ZIP people download is `extension/imagesearch-toolkit.zip`. **Rebuild it whenever you change anything in `extension/imagesearch-toolkit/`**, and commit the new ZIP. The command is in `extension/README.md`.
+- Before building, set `DEFAULT_SITE` at the top of `extension/imagesearch-toolkit/config.js` to your own address. People can also change it in the extension's Settings.
+- It is installed with Chrome's **Load unpacked** option, because the extension isn't on the Chrome Web Store. The install page explains the steps. Publishing to the Web Store later gives one-click installs.
+- The extension asks for access to all sites so it can fetch the one image you right-click. It sends nothing anywhere and has no analytics. The install page explains each permission.
+- The site supports two small URL parameters for it: `index.html?q=text` starts a photo search, and `links.html?add=https://…&title=…` adds a link to the builder.
 
 ## Notes on the tools
 
