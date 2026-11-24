@@ -731,3 +731,111 @@ input[type="color"] {
     .can-do { grid-template-columns: 1fr; }
     .btn-big { padding: 0 32px; }
 }
+
+/* ---------- Extension page ---------- */
+
+.download-box {
+    display: grid;
+    justify-items: start;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.download-box .btn-primary {
+    min-height: 56px;
+    padding: 0 32px;
+    border-radius: 999px;
+    font-size: 17px;
+    gap: 10px;
+}
+
+.download-note { font-size: 14px; color: var(--muted); }
+
+.section-title {
+    margin: 0 0 16px;
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: -0.02em;
+}
+
+.tool-section { margin-top: 48px; }
+
+.steps {
+    display: grid;
+    gap: 14px;
+    max-width: 760px;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+    list-style: none;
+}
+
+.steps li {
+    position: relative;
+    padding: 4px 0 4px 52px;
+    counter-increment: step;
+}
+
+.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
+}
+
+.steps strong { display: block; }
+.steps span { color: var(--muted); }
+
+.code-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.code-row code {
+    padding: 6px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+.perm-list {
+    display: grid;
+    gap: 12px;
+    max-width: 760px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.perm-list li {
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.perm-list strong { display: block; margin-bottom: 2px; }
+.perm-list span { color: var(--muted); font-size: 15px; }
+
+.callout {
+    max-width: 760px;
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+    border-radius: 12px;
+    font-size: 15px;
+}
