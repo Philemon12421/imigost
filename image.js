@@ -1,4 +1,4 @@
-const ACCESS_KEY = "YOUR_UNSPLASH_ACCESS_KEY"; // https://unsplash.com/developers
+const ACCESS_KEY = "M6TJBtHgrKtH5e4PKgrzfNDTV3fQJK1VDTHdZnjZQRc"; // https://unsplash.com/developers
 const PER_PAGE = 12;
 const UTM = "?utm_source=image_search&utm_medium=referral";
 
