@@ -429,6 +429,17 @@ input.invalid {
     color: var(--muted);
 }
 
+.notice {
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.notice[hidden] { display: none; }
+
 /* ---------- Links editor ---------- */
 
 #links-editor {
