@@ -1,4 +1,4 @@
-const ACCESS_KEY = "M6TJBtHgrKtH5e4PKgrzfNDTV3fQJK1VDTHdZnjZQRc"; // https://unsplash.com/developers
+const ACCESS_KEY = "YOUR_UNSPLASH_ACCESS_KEY"; // https://unsplash.com/developers
 const PER_PAGE = 12;
 const UTM = "?utm_source=image_search&utm_medium=referral";
 
@@ -331,4 +331,11 @@ suggestions.forEach((chip) => {
 });
 
 // Show popular photos on first load
-startSearch("");
+// Opened from the browser extension with ?q=... : search for it straight away
+const initialQuery = (new URLSearchParams(location.search).get("q") || "").trim().slice(0, 100);
+if (initialQuery) {
+    searchBox.value = initialQuery;
+    startSearch(initialQuery);
+} else {
+    startSearch("");
+}
