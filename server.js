@@ -24,7 +24,7 @@ const MIN_SLUG = 3;
 /* Names that would clash with real files or routes */
 const RESERVED = new Set([
     "api", "index", "links", "profile", "image", "core", "builder", "server",
-    "offline", "manifest", "tools", "crop", "convert", "speed", "favicon", "icons", "consent", "pwa", "site", "sw", "robots",
+    "offline", "manifest", "extension", "tools", "crop", "convert", "speed", "favicon", "icons", "consent", "pwa", "site", "sw", "robots",
     "admin", "static", "assets", "login", "signup", "help", "about", "terms", "privacy",
 ]);
 
@@ -36,17 +36,19 @@ const TYPES = {
     ".webmanifest": "application/manifest+json; charset=utf-8",
     ".svg": "image/svg+xml",
     ".png": "image/png",
+    ".zip": "application/zip",
 };
 
 const FILES = [
     "index.html", "links.html", "profile.html", "offline.html",
-    "tools.html", "crop.html", "convert.html", "speed.html",
+    "tools.html", "crop.html", "convert.html", "speed.html", "extension.html",
     "image.css", "links.css", "site.css", "tools.css",
     "core.js", "image.js", "builder.js", "consent.js", "pwa.js", "sw.js",
     "tools.js", "crop.js", "convert.js", "speed.js",
     "manifest.webmanifest", "favicon.svg",
     "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png",
     "icons/apple-touch-icon.png", "icons/favicon-32.png",
+    "extension/imagesearch-toolkit.zip",
 ];
 
 const STATIC_FILES = { "/": ["index.html", TYPES[".html"]] };
@@ -128,7 +130,8 @@ function sendFile(res, file, type, status = 200) {
     fs.readFile(path.join(__dirname, file), (err, data) => {
         if (err) return send(res, 404, "Not found", "text/plain; charset=utf-8");
         const cache = file.startsWith("icons/") ? "public, max-age=86400" : "no-cache";
-        send(res, status, data, type, { "Cache-Control": cache });
+        const extra = file.endsWith(".zip") ? { "Content-Disposition": 'attachment; filename="' + path.basename(file) + '"' } : {};
+        send(res, status, data, type, { "Cache-Control": cache, ...extra });
     });
 }
 
