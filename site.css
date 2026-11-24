@@ -183,3 +183,40 @@
 @media (prefers-reduced-motion: reduce) {
     .consent { animation: none; }
 }
+
+/* ---------- Footer row and the extension button ---------- */
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+}
+
+.footer-row p { margin: 0; }
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: var(--accent, #3a47f0);
+    border-radius: 999px;
+    color: var(--accent-ink, #ffffff);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.footer-btn:hover { background: var(--accent-hover, #2c37d1); }
+
+.footer-btn:focus-visible {
+    outline: 3px solid var(--accent, #3a47f0);
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .footer-row { justify-content: center; text-align: center; }
+}
