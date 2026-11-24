@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageSearch Toolkit</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <header class="head">
+        <img src="icons/icon-32.png" width="24" height="24" alt="">
+        <h1>ImageSearch</h1>
+    </header>
+
+    <form id="search-form" class="search" role="search">
+        <label for="q" class="sr-only">Search photos</label>
+        <input id="q" type="search" placeholder="Search photos" autocomplete="off" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <button type="button" class="primary-action" id="add-page">
+        <span class="label">Add this page to my link page</span>
+        <span class="sub" id="add-sub"></span>
+    </button>
+    <p class="message" id="message" role="status"></p>
+
+    <nav class="links" aria-label="Tools">
+        <a href="#" data-page="crop.html">Crop a photo</a>
+        <a href="#" data-page="convert.html">Compress and convert</a>
+        <a href="#" data-page="speed.html">Speed test</a>
+        <a href="#" data-page="links.html">My link page</a>
+    </nav>
+
+    <p class="tip"><strong>Tip:</strong> right-click any image on a website to crop or compress it.</p>
+
+    <footer class="foot">
+        <a href="#" id="open-options">Settings</a>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
