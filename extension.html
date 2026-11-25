@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ImageSearch for Chrome · Get the extension</title>
+    <meta name="description" content="A free browser extension: right-click any image to crop or compress it, add any page to your link page, and search photos in one click.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#f2f3f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101214" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ImageSearch">
+
+    <!-- Loads Google Fonts only after the visitor accepts -->
+    <script src="consent.js"></script>
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="links.css">
+    <link rel="stylesheet" href="tools.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="ImageSearch home">
+            <svg class="brand-mark" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <path d="M3 8V4h4M17 4h4v4M21 16v4h-4M7 20H3v-4"/>
+                <circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>
+            </svg>
+            ImageSearch
+        </a>
+        <nav class="topbar-nav">
+            <a href="index.html">Photos</a>
+            <a href="links.html">Link page</a>
+            <a href="tools.html">Tools</a>
+        </nav>
+    </header>
+
+    <main class="tool">
+        <section class="tool-hero">
+            <h1>ImageSearch for Chrome.</h1>
+            <p>Right-click any image on the web to crop it for social media or compress it. Add any page to your link page. Search photos without leaving what you’re reading.</p>
+        </section>
+
+        <div class="download-box">
+            <a class="btn-primary" href="extension/imagesearch-toolkit.zip" download><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 20h14"/></svg> Download for Chrome (.zip)</a>
+            <p class="download-note">Free. Version 1.0.0. Works in Chrome, Edge, Brave and Opera.</p>
+        </div>
+
+        <div class="tool-grid">
+            <div class="tool-card">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14"/></svg></span>
+                <h2>Crop or compress any image</h2>
+                <p>Right-click an image on any website and choose <strong>Crop for social media</strong> or <strong>Compress, resize or convert</strong>. It opens in the tool, ready to go. Nothing is uploaded.</p>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span>
+                <h2>Add pages to your link page</h2>
+                <p>Right-click a page or a link and choose <strong>Add to my link page</strong>. Or use the toolbar button to add the page you’re on.</p>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
+                <h2>Search photos in one click</h2>
+                <p>Select any text, right-click and search photos for it. The toolbar popup has a search box and quick links to every tool.</p>
+            </div>
+        </div>
+
+        <section class="tool-section" aria-labelledby="install-heading">
+            <h2 class="section-title" id="install-heading">How to install it</h2>
+            <ol class="steps">
+                <li>
+                    <strong>Download and unzip</strong>
+                    <span>Unzip the file. You’ll get a folder called <code>imagesearch-toolkit</code>. Keep it somewhere permanent, because Chrome loads the extension from it.</span>
+                </li>
+                <li>
+                    <strong>Open the extensions page</strong>
+                    <span>Type this into the address bar and press Enter. Chrome doesn’t allow links to this page.</span>
+                    <div class="code-row"><code>chrome://extensions</code> <button type="button" class="btn-secondary btn-small" data-copy="chrome://extensions">Copy</button></div>
+                </li>
+                <li>
+                    <strong>Turn on Developer mode</strong>
+                    <span>It’s the switch in the top right corner.</span>
+                </li>
+                <li>
+                    <strong>Click “Load unpacked”</strong>
+                    <span>Choose the <code>imagesearch-toolkit</code> folder you unzipped. Select the folder itself, not a file inside it.</span>
+                </li>
+                <li>
+                    <strong>Pin it (optional)</strong>
+                    <span>Click the puzzle-piece icon in the toolbar and pin ImageSearch Toolkit so the search box is one click away.</span>
+                </li>
+            </ol>
+
+            <p class="callout">Chrome may show a reminder about extensions in developer mode when it starts. That’s normal for extensions installed this way. To update later, download the new ZIP, replace the folder, then click the reload icon on the extension’s card.</p>
+        </section>
+
+        <section class="tool-section" aria-labelledby="privacy-heading">
+            <h2 class="section-title" id="privacy-heading">What it can access, and why</h2>
+            <ul class="perm-list">
+                <li>
+                    <strong>Read and change data on all websites</strong>
+                    <span>Chrome words it this way for any extension that can fetch an image from any site. It is used only when you right-click an image and choose a tool, to copy that one image, and to hand it to your ImageSearch tab.</span>
+                </li>
+                <li>
+                    <strong>Context menus</strong>
+                    <span>Adds the right-click items.</span>
+                </li>
+                <li>
+                    <strong>Scripting</strong>
+                    <span>Places the image into the tool page, as if you had chosen the file yourself.</span>
+                </li>
+                <li>
+                    <strong>Storage</strong>
+                    <span>Remembers one setting: the address of your ImageSearch site.</span>
+                </li>
+            </ul>
+            <p class="callout">The extension has no analytics and sends nothing to anyone. Your photos stay on your device: they go from the web page to a tab of this site, where the tools run in your browser. Its code is plain JavaScript in the folder you unzip, so you can read it before you install.</p>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-row">
+            <p>Made with ImageSearch. <span aria-hidden="true">·</span> <button type="button" class="link-button" data-consent-open>Cookie settings</button></p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy buttons for addresses people have to paste into the browser
+        document.querySelectorAll("[data-copy]").forEach(function (btn) {
+            btn.addEventListener("click", async function () {
+                var label = btn.textContent;
+                try { await navigator.clipboard.writeText(btn.dataset.copy); btn.textContent = "Copied"; }
+                catch (e) { btn.textContent = "Select and copy it"; }
+                setTimeout(function () { btn.textContent = label; }, 1800);
+            });
+        });
+    </script>
+    <script src="pwa.js"></script>
+</body>
+</html>
