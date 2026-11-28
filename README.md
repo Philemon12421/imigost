@@ -201,4 +201,4 @@ Built by Philemon Osei Kusi.
 
 ## License
 
-No license has been chosen yet. Add a `LICENSE` file (MIT is a common choice) to say how others may use this code.
+`LICENSE` MIT.
