@@ -1,10 +1,32 @@
-# ImageSearch
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="readme-assets/header-dark.svg">
+    <img src="readme-assets/header-light.svg" alt="ImageSearch" width="860">
+  </picture>
+</p>
 
-A fast, installable photo search site with a built-in **link-in-bio page builder**. Search free photos from Unsplash, open them full size, and create one shareable page that holds all your social profiles and links.
+<p align="center">
+  <a href="https://imigost.vercel.app"><b>Live demo</b></a> &nbsp;·&nbsp;
+  <a href="https://imigost.vercel.app/extension.html"><b>Chrome extension</b></a> &nbsp;·&nbsp;
+  <a href="#features">Features</a> &nbsp;·&nbsp;
+  <a href="#getting-started">Getting started</a> &nbsp;·&nbsp;
+  <a href="#deploying">Deploying</a>
+</p>
 
-**Live demo:** [imigost.vercel.app](https://imigost.vercel.app)
+<p align="center">
+  A fast, installable photo search site with a built-in link-in-bio page builder,<br>
+  handy photo tools and a browser extension. No framework and no build step:<br>
+  plain HTML, CSS and JavaScript, plus an optional tiny Node server for short links.
+</p>
 
-No framework and no build step. It's plain HTML, CSS and JavaScript, plus an optional tiny Node server for short links.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="readme-assets/features-dark.svg">
+    <img src="readme-assets/features-light.svg" alt="Photo search, link page builder, photo tools and a Chrome extension" width="860">
+  </picture>
+</p>
+
+---
 
 ## Features
 
@@ -60,6 +82,7 @@ See [`extension/README.md`](extension/README.md) for how it works, how to point 
 | `site.css`, `consent.js` | Cookie banner, install button, offline notice, footer button |
 | `pwa.js`, `sw.js`, `manifest.webmanifest`, `offline.html` | Progressive web app files |
 | `favicon.svg`, `icons/` | Favicon and app icons |
+| `readme-assets/` | The animated images at the top of this README, and the script that makes them |
 
 ## Getting started
 
@@ -161,6 +184,8 @@ Visitors can change their choice any time with **Cookie settings** in the footer
 **Add a social platform:** add an entry to `PLATFORMS` and an icon to `ICON_PATHS` in `core.js`. It appears in the builder automatically.
 
 **Add a look:** add an object to `THEME_LIST` in `core.js` with a `tone` (`light`, `dark` or `colour`, used by the filter), colours, a button style (`solid`, `glass`, `shadow`, `outline`, `hard` or `glow`), corner size, font (`sans`, `serif`, `mono`, `round` or `hand`) and icon style. For a patterned background, also set `bgSize` and a plain `solid` colour.
+
+**Change the animated README images:** edit the taglines or colours in `readme-assets/make_readme_assets.py`, then run `python3 readme-assets/make_readme_assets.py` and commit the four SVG files it writes.
 
 **Change the brand colour:** edit `--accent` in the `:root` block of `image.css` and `links.css`, and the `#3a47f0` value in `favicon.svg` and `manifest.webmanifest`.
 
